@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naukri Profile</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      padding: 10px 0;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .navbar li {
+      margin-right: 20px;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .navbar a:hover {
+      color: #ccc;
+    }
+
+    .user-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .user-logo img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .logout-option {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      top: 50px;
+      right: 10px;
+      z-index: 1000;
+    }
+
+    .user-logo:hover .logout-option {
+      display: block;
+    }
+
+    .details-section {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .section-buttons {
+      margin-top: 20px;
+      margin-right: 20px;
+    }
+
+    .component-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+
+    .component {
+      padding: 20px;
+    }
+
+    .component.active {
+      display: block;
+    }
+    .image-button{
+        border-radius: 50%;
+        width:100px;
+        height:100px;
+        margin-left: 10px;
+        background-image: url('path_to_your_image.jpg');
+        background-size: cover;
+    }
+    .add-details-card {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: none;
+      width:500px;
+      height:500px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Logo</div>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Jobs</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+      <div class="user-logo">
+        <img src="user_logo.png" alt="User Logo">
+        <div class="logout-option">
+          <a href="#">Logout</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="profile-info">
+        <h2 class="profile-heading">Profile</h2> <button class="image-button"></button>
+        <ul class="profile-details">
+          <li>Last Updated: 12Feb, 2024</li>
+          <li>Location: Hyderabad, INDIA</li>
+          <li>Phone: 9963052653</li>
+          <li>Email: sbilluri9@gmail.com</li>
+          <li>Experience: 2 Years 2 Months</li>
+        </ul>
+        <div class="completeness-bar">
+          <div class="fill" style="width: 67%"></div>
+        </div>
+      </section>
+
+      <section class="details-section">
+        <div class="section-buttons">
+          <h2 class="profile-heading">Resume, Education, IT Skills, and Projects</h2>
+          <button onclick="scrollToComponent('resume')">Resume</button><br>
+          <button onclick="scrollToComponent('education')">Education</button><br>
+          <button onclick="scrollToComponent('it_skills')">IT Skills</button><br>
+          <button onclick="scrollToComponent('projects')">Projects</button>
+        </div>
+        <div class="component-container">
+          <!-- Components for each section -->
+          <div id="resume" class="component card active">
+            <!-- Resume component content -->
+            <h3>Resume</h3>
+            <a href="#" onclick="document.getElementById('resumeFile').click();">Upload Resume</a>
+            <input type="file" id="resumeFile" style="display:none;">
+          </div>
+          <div id="education" class="component card">
+            <!-- Education component content -->
+            <h3>Education</h3>
+            <button onclick="openAddDetailsCard('education')">Add Details</button>
+          </div>
+          <div id="it_skills" class="component card">
+            <!-- IT Skills component content -->
+            <h3>IT Skills</h3>
+            <button onclick="openAddDetailsCard('it_skills')">Add Details</button>
+          </div>
+          <div id="projects" class="component card">
+            
+            <h3>Projects</h3>
+            <button onclick="openAddDetailsCard('projects')">Add Details</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+   Footer
+  </footer>
+
+  <div id="addDetailsCard" class="add-details-card">
+    <span class="close-btn" onclick="closeAddDetailsCard()">&times;</span>
+    <h2>Add Details</h2>
+    <form>
+      <!-- Add more form fields as needed -->
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    function scrollToComponent(componentId) {
+      var component = document.getElementById(componentId);
+      if (component) {
+        component.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function openAddDetailsCard(componentId) {
+      var addDetailsCard = document.getElementById('addDetailsCard');
+      addDetailsCard.style.display = 'block';
+      scrollToComponent(componentId);
+    }
+
+    function closeAddDetailsCard() {
+      var addDetailsCard = document.getElementById('addDetailsCard');
+      addDetailsCard.style.display = 'none';
+    }
+  </script>
+</body>
+</html>

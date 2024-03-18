@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('C:\\Users\\NGS112\\Desktop\\JobPortal\\jobHome.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+.container {
+    text-align: center;
+}
+
+.logo {
+ 
+    max-width: 180px;
+    margin-top: 20px;
+
+}
+
+.quote {
+    font-style: italic;
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 30px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.buttons {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

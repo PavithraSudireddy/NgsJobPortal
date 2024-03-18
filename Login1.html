@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Job Portal Login</title>
+    <style>
+       
+     body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('./registration.png');/* Transparent background color with black overlay */
+}
+
+.container {
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    max-width: 100px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+    </style>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+        const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get the email and password input values
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Validate the input values
+            if (email === '' || password === '') {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Send the login request to the server
+            // You can replace this with your own AJAX or Fetch API code
+            console.log('Email:', email);
+            console.log('Password:', password);
+        });
+
+        forgotPasswordLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            loginForm.style.display = 'none';
+            forgotPasswordForm.style.display = 'block';
+        });
+
+        forgotPasswordForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get the email input value
+            const email = document.getElementById('forgotPasswordEmail').value;
+
+            // Validate the input values
+            if (email === '') {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Send the password reset request to the server
+            // You can replace this with your own AJAX or Fetch API code
+            console.log('Email:', email);
+
+            // Show a success message
+            alert('Password reset email sent');
+
+            // Hide the forgot password form and show the login form
+            forgotPasswordForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="./Logo 1.png" alt="Company Logo">
+        </div>
+        <form id="loginForm">
+            <h2>Login Form</h2>
+            <div class="form-group">
+                <label for="email">Email ID</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+            <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+        </form>
+        <form id="forgotPasswordForm" style="display: none;">
+            <h2>Forgot Password</h2>
+            <div class="form-group">
+                <label for="forgotPasswordEmail">Email ID</label>
+                <input type="email" id="forgotPasswordEmail" name="forgotPasswordEmail" required>
+            </div>
+            <button type="submit">Reset Password</button>
+        </form>
+    </div>
+</body>
+</html>

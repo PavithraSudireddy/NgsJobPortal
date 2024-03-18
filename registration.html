@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-image: url('./registration.png');
+        background-size: cover;
+        background-position: center;
+        background-color: rgb(255, 187, 127);
+      }
+
+      #regForm {
+        width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: rgba(195, 230, 240, 0.8);
+        border-radius: 5px;
+      }
+
+      #regForm input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+
+      #regForm label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      #regForm .logo {
+        margin-right: 40px;
+        max-width: 180px;
+        margin-top: 20px;
+
+      }
+    </style>
+  </head>
+  <body>
+    <div id="regForm">
+      <img src="./Logo 1.png" alt="Company Logo" class="logo" />
+      <form>
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" required />
+
+        <label for="emailID">Email ID:</label>
+        <input type="email" id="emailID" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required />
+
+        <label for="mobileNumber">Mobile Number:</label>
+        <input type="tel" id="mobileNumber" required />
+
+        <label for="workStatus">Work Status:</label>
+        <select id="workStatus" required>
+          <option value="Fresher">Fresher</option>
+          <option value="Experienced">Experienced</option>
+        </select>
+
+        <label for="currentCity">Current City:</label>
+        <input type="text" id="currentCity" required />
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+
+    <script>
+      const form = document.querySelector('#regForm form');
+      const fullName = document.querySelector('#fullName');
+      const emailID = document.querySelector('#emailID');
+      const password = document.querySelector('#password');
+      const mobileNumber = document.querySelector('#mobileNumber');
+      const workStatus = document.querySelector('#workStatus');
+      const currentCity = document.querySelector('#currentCity');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        if (fullName.value.length < 3) {
+          alert('Please enter a valid full name.');
+          return;
+        }
+
+        if (!emailID.value.includes('@')) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+
+        if (password.value.length < 8) {
+          alert('Please enter a password with at least 8 characters.');
+          return;
+        }
+
+        if (!mobileNumber.value.match(/^\d{10}$/)) {
+          alert('Please enter a valid mobile number.');
+          return;
+        }
+
+        if (workStatus.value === '') {
+          alert('Please select a work status.');
+          return;
+        }
+
+        if (currentCity.value.length < 3) {
+          alert('Please enter a valid current city.');
+          return;
+        }
+
+        alert('Registration successful!');
+      });
+    </script>
+  </body>
+</html>

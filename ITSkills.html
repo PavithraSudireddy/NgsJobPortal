@@ -1,0 +1,171 @@
+[13:33] Padma Midathana
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Skills Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+ 
+    .container {
+        width: 80%;
+        margin: 20px auto;
+    }
+ 
+    h2 {
+        text-align: center;
+    }
+ 
+    form {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+ 
+    .form-group {
+        margin-bottom: 20px;
+    }
+ 
+    label {
+        font-weight: bold;
+    }
+ 
+    input[type="text"],
+    select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+ 
+    .button-group {
+        text-align: left;
+    }
+ 
+    button {
+        padding: 10px 20px;
+        margin-right: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+ 
+    button:hover {
+        background-color: #0056b3;
+    }
+ 
+    #selectedSkillsHeading {
+        margin-top: 20px;
+    }
+ 
+    #selectedSkills {
+        padding: 10px;
+        background-color: #e9e9e9;
+        border-radius: 5px;
+    }
+ 
+    #selectedSkills label {
+        display: block;
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+ 
+<div class="container">
+    <h2>IT Skills</h2>
+ 
+    <form id="itSkillsForm">
+        <div class="form-group">
+            <label for="skillName">Skill/Software Name:</label>
+            <select id="skillName" name="skillName">
+                <option value="">Select Skill/Software</option>
+                <option value="Java">Java</option>
+                <option value="Python">Python</option>
+                <option value="JavaScript">JavaScript</option>
+                <!-- Add more skills/software as needed -->
+            </select>
+        </div>
+ 
+        <div id="selectedSkillsHeading" style="display: none;">
+            <h3>Selected Skills</h3>
+            <div id="selectedSkills"></div>
+        </div>
+ 
+        <div class="form-group">
+            <label for="experienceYears">Experience:</label>
+            <select id="experienceYears" name="experienceYears">
+                <option value="">Years</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <!-- Add more years as needed -->
+            </select>
+        </div>
+ 
+        <div class="button-group">
+            <button type="button" onclick="addSkill()">Add Skill</button>
+            <button type="button" onclick="submitForm()">Save</button>
+            <button type="button" onclick="cancelForm()">Cancel</button>
+        </div>
+    </form>
+</div>
+ 
+<script>
+    function cancelForm() {
+        document.getElementById("itSkillsForm").reset();
+        clearSelectedSkills();
+    }
+ 
+    function addSkill() {
+        const selectedSkill = document.getElementById("skillName").value;
+        if (selectedSkill) {
+            const selectedSkillsHeading = document.getElementById("selectedSkillsHeading");
+            selectedSkillsHeading.style.display = "block";
+ 
+            const selectedSkillsContainer = document.getElementById("selectedSkills");
+            const skillLabel = document.createElement("label");
+            skillLabel.textContent = selectedSkill;
+            selectedSkillsContainer.appendChild(skillLabel);
+ 
+            // Clear the selected skill from the dropdown
+            document.getElementById("skillName").value = "";
+        }
+    }
+ 
+    function clearSelectedSkills() {
+        const selectedSkillsContainer = document.getElementById("selectedSkills");
+        selectedSkillsContainer.innerHTML = '';
+        document.getElementById("selectedSkillsHeading").style.display = "none";
+    }
+ 
+    function submitForm() {
+        const selectedSkills = Array.from(document.querySelectorAll("#selectedSkills label")).map(label => label.textContent.trim());
+        const experienceYears = document.getElementById("experienceYears").value;
+ 
+        const data = {
+            skills: selectedSkills,
+            experienceYears: experienceYears
+        };
+ 
+        // Convert data to JSON
+        const jsonData = JSON.stringify(data);
+ 
+        // Send jsonData to backend using Spring Boot REST services
+        console.log(jsonData); // For testing, log the JSON data to the console
+    }
+</script>
+ 
+</body>
+</html>
+ 
